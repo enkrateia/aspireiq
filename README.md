@@ -5,6 +5,7 @@
 * Create SVG Icons for Email Tags.
 * The styles of the input should be updated, width, height.
 * Split some Util functions (like sort) into another file.
+* Add Unit Test
 
 
 
