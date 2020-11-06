@@ -6,15 +6,18 @@ import { validateEmail } from 'helpers/validations';
 
 interface EmailInputProps {}
 
+// FIXME: I need to handle duplication of a email in the list
+
 const EmailInput: React.FunctionComponent<EmailInputProps> = () => {
   const [tagEmails, setTagEmails] = useState<Email[]>([]);
-  const [emailInput, setEmailInput] = useState('');
-  const [isInputRendered, setIsInputRendered] = useState(false);
-  const inputRef = useRef<HTMLInputElement>(null);
   const [emailList, setEmailList] = useState<Email[]>([]);
-  const hoverRef = useRef<HTMLDivElement>(null);
+  const [isInputRendered, setIsInputRendered] = useState(false);
   const [isOver, setIsOver] = useState(false);
+  const [emailInput, setEmailInput] = useState('');
+  const hoverRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
+  // This is the mock data
   const emailsMock: Email[] = mockEmails;
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -82,6 +85,7 @@ const EmailInput: React.FunctionComponent<EmailInputProps> = () => {
     }
   }, [isInputRendered]);
 
+  // This useEffect is for manage the onBlur of Input
   useEffect(() => {
     const node = hoverRef.current;
     if (node) {
@@ -97,7 +101,7 @@ const EmailInput: React.FunctionComponent<EmailInputProps> = () => {
 
   useEffect(() => {
     if (isInputRendered) {
-      // TODO: Improve this using REGEX
+      // TODO: Improve this using REGEX, will be faster.
       const filterList = emailsMock.filter(ele =>
         ele.text.includes(emailInput)
       );
@@ -118,6 +122,7 @@ const EmailInput: React.FunctionComponent<EmailInputProps> = () => {
         {tagEmails.length !== 0 || isInputRendered ? (
           tagEmails?.map(ele => (
             <div
+              key={ele.text}
               className={`${styles.tag} ${
                 ele.isValid === false ? styles.notValid : ''
               }`}
@@ -126,6 +131,8 @@ const EmailInput: React.FunctionComponent<EmailInputProps> = () => {
               }
             >
               <span>{ele.text}</span>
+              {/* TODO:_I would replace this with an SVGICON from Material-UI for example.*/}
+              {/* FIXME: The X ICON should be replaced ONHOVER with an exclamation sign ICON */}
               <div className={styles.delete}>x</div>
             </div>
           ))
@@ -135,6 +142,7 @@ const EmailInput: React.FunctionComponent<EmailInputProps> = () => {
       </div>
       {isInputRendered && (
         <div className={styles.inputContainer}>
+          {/* FIXME: The styles of the input should be updated, width, height */}
           <input
             type='email'
             name='email'
@@ -169,6 +177,7 @@ const EmailInput: React.FunctionComponent<EmailInputProps> = () => {
 
 export default EmailInput;
 
+// TODO: With more time I would move this function into another file
 const sortFunction = (a: Email, b: Email): number => {
   const emailA = a.text.toUpperCase();
   const emailB = b.text.toUpperCase();
