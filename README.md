@@ -2,6 +2,7 @@
 
 * Improve email Validation with REGEX, will be faster.
 * Split some Util functions (like sort) into another file.
+* Add Unit Test
 
 
 
