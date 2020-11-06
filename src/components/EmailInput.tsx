@@ -104,10 +104,13 @@ const EmailInput: React.FunctionComponent<EmailInputProps> = () => {
 
   useEffect(() => {
     if (isInputRendered) {
+      const hashMap: any = {};
+      tagEmails.forEach(ele => (hashMap[ele.text] = true));
       // TODO: Improve this using REGEX, will be faster.
-      const filterList = emailsMock.filter(ele =>
-        ele.text.includes(emailInput)
+      const filterList = emailsMock.filter(
+        ele => ele.text.includes(emailInput) && !hashMap[ele.text]
       );
+
       const sortedList = filterList.sort(sortFunction);
 
       const renderList = [];
@@ -117,7 +120,7 @@ const EmailInput: React.FunctionComponent<EmailInputProps> = () => {
 
       setEmailList([...renderList]);
     }
-  }, [emailInput, emailsMock, isInputRendered]);
+  }, [emailInput, emailsMock, isInputRendered, tagEmails]);
 
   return (
     <div className={styles.container} onClick={handleClick}>
