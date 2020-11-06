@@ -1,0 +1,105 @@
+.container {
+  min-height: 50px;
+  flex-wrap: wrap;
+  width: 500px;
+  background-color: #fdfdfd;
+  border-radius: 5px;
+  box-shadow: 0px 0px 16px 11px #e7e7e7;
+  padding: 10px 10px;
+  display: flex;
+}
+
+.emailsContainer {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.tag {
+  margin: 3px 0px;
+  cursor: pointer;
+  padding: 4px 10px;
+  color: black;
+  font-weight: 600;
+  font-size: 14px;
+  display: flex;
+  align-content: center;
+}
+
+.tag:hover {
+  background-color: #ededed;
+  border-radius: 5px;
+}
+
+div:hover.notValid {
+  background-color: #f3b7bd;
+}
+
+.delete {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin-left: 6px;
+}
+
+.tag .delete {
+  visibility: hidden;
+}
+
+.tag:hover .delete {
+  visibility: visible;
+}
+
+.emailInput {
+  /* width: 100% */
+}
+.emailInput:focus,
+.emailInput:active {
+  outline: none;
+}
+
+.emptyState {
+  cursor: pointer;
+}
+
+.inputContainer {
+  position: relative;
+  display: flex;
+}
+
+.listContainer {
+  position: absolute;
+  top: 25px;
+  background-color: #fdfdfd;
+  border-radius: 5px;
+  box-shadow: 0px 0px 16px 11px #e7e7e7;
+  padding: 10px 0px;
+  display: flex;
+  flex-direction: column;
+  left: 16px;
+  width: 300px;
+  height: 200px;
+  overflow-y: auto;
+}
+
+.emailList {
+  display: flex;
+  flex-direction: column;
+  padding: 0px;
+  margin: 0px;
+}
+
+.emailListElement {
+  cursor: pointer;
+  list-style-type: none;
+  margin: 5px 0px;
+  padding: 10px 15px;
+}
+
+.emailListElement:hover {
+  background-color: #eff5f9;
+}
+
+*:focus {
+  outline: none;
+}
