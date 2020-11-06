@@ -63,7 +63,7 @@ div:hover.notValid {
   border: none;
   font-size: 15px;
   width: 100px;
-  /* height: 10px */
+  padding: 4px 8px;
 }
 .emailInput:focus,
 .emailInput:active {
