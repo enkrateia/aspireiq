@@ -1,3 +1,13 @@
+# Improves
+
+* Handle duplication of a email in the list.
+* Improve email Validation with REGEX, will be faster.
+* Create SVG Icons for Email Tags.
+* The styles of the input should be updated, width, height.
+* Split some Util functions (like sort) into another file.
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
