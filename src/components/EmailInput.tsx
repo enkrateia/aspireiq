@@ -54,8 +54,11 @@ const EmailInput: React.FunctionComponent<EmailInputProps> = () => {
 
   const storeEmail = (email: Email) => {
     const oldEmails = [...tagEmails];
-    oldEmails.push(email);
-    setTagEmails([...oldEmails]);
+    const isDuplicated = oldEmails.includes(email);
+    if (!isDuplicated) {
+      oldEmails.push(email);
+      setTagEmails([...oldEmails]);
+    }
   };
 
   const handleTagClick = (
