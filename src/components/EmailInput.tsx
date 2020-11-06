@@ -3,10 +3,10 @@ import Email from 'models/Email';
 import styles from 'components/EmailInput.module.css';
 import mockEmails from 'mock/emails.json';
 import { validateEmail } from 'helpers/validations';
+import CloseIcon from '@material-ui/icons/Close';
+import PriorityHighIcon from '@material-ui/icons/PriorityHigh';
 
 interface EmailInputProps {}
-
-// FIXME: I need to handle duplication of a email in the list
 
 const EmailInput: React.FunctionComponent<EmailInputProps> = () => {
   const [tagEmails, setTagEmails] = useState<Email[]>([]);
@@ -55,7 +55,7 @@ const EmailInput: React.FunctionComponent<EmailInputProps> = () => {
   const storeEmail = (email: Email) => {
     const oldEmails = [...tagEmails];
     const isDuplicated = oldEmails.includes(email);
-    if (!isDuplicated) {
+    if (!isDuplicated && email.text !== '') {
       oldEmails.push(email);
       setTagEmails([...oldEmails]);
     }
@@ -121,33 +121,34 @@ const EmailInput: React.FunctionComponent<EmailInputProps> = () => {
 
   return (
     <div className={styles.container} onClick={handleClick}>
-      <div className={styles.emailsContainer}>
-        {tagEmails.length !== 0 || isInputRendered ? (
-          tagEmails?.map(ele => (
-            <div
-              key={ele.text}
-              className={`${styles.tag} ${
-                ele.isValid === false ? styles.notValid : ''
-              }`}
-              onClick={(event: React.MouseEvent<HTMLDivElement, MouseEvent>) =>
-                handleTagClick(ele, event)
-              }
-            >
-              <span>{ele.text}</span>
-              {/* TODO:_I would replace this with an SVGICON from Material-UI for example.*/}
-              {/* FIXME: The X ICON should be replaced ONHOVER with an exclamation sign ICON */}
-              <div className={styles.delete}>x</div>
-            </div>
-          ))
-        ) : (
-          <EmptyState />
-        )}
-      </div>
+      {tagEmails.length !== 0 || isInputRendered ? (
+        tagEmails?.map(ele => (
+          <div
+            key={ele.text}
+            className={`${styles.tag} ${
+              ele.isValid === false ? styles.notValid : ''
+            }`}
+            onClick={(event: React.MouseEvent<HTMLDivElement, MouseEvent>) =>
+              handleTagClick(ele, event)
+            }
+          >
+            <span>{ele.text}</span>
+            {ele.isValid === false ? (
+              <div className={styles.deleteContainer}>
+                <PriorityHighIcon className={styles.delete} />
+              </div>
+            ) : (
+              <CloseIcon className={styles.delete} />
+            )}
+          </div>
+        ))
+      ) : (
+        <EmptyState />
+      )}
       {isInputRendered && (
         <div className={styles.inputContainer}>
-          {/* FIXME: The styles of the input should be updated, width, height */}
           <input
-            type='email'
+            type='text'
             name='email'
             id='email'
             value={emailInput}
@@ -159,17 +160,21 @@ const EmailInput: React.FunctionComponent<EmailInputProps> = () => {
           />
           <div className={styles.listContainer} ref={hoverRef}>
             <ul className={styles.emailList}>
-              {emailList.map(ele => (
-                <li
-                  key={ele.text}
-                  className={styles.emailListElement}
-                  onClick={(
-                    event: React.MouseEvent<HTMLLIElement, MouseEvent>
-                  ) => handleListElementClick(ele, event)}
-                >
-                  {ele.text}
-                </li>
-              ))}
+              {emailList.length !== 0 ? (
+                emailList.map(ele => (
+                  <li
+                    key={ele.text}
+                    className={styles.emailListElement}
+                    onClick={(
+                      event: React.MouseEvent<HTMLLIElement, MouseEvent>
+                    ) => handleListElementClick(ele, event)}
+                  >
+                    {ele.text}
+                  </li>
+                ))
+              ) : (
+                <span className={styles.emailListElement}>No coincidences</span>
+              )}
             </ul>
           </div>
         </div>
