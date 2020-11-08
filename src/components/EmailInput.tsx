@@ -77,6 +77,7 @@ const EmailInput: React.FunctionComponent<EmailInputProps> = () => {
     event: React.MouseEvent<HTMLLIElement, MouseEvent>
   ) => {
     event.stopPropagation();
+    setIsOver(false);
     storeEmail(selectedEmail);
     setIsInputRendered(false);
     setEmailInput('');

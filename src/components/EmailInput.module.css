@@ -19,6 +19,7 @@
   font-weight: 600;
   font-size: 14px;
   display: flex;
+  word-break: break-all;
 }
 
 .tag:hover {
