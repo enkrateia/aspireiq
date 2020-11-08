@@ -63,8 +63,8 @@ div:hover.notValid {
   padding: 0px;
   border: none;
   font-size: 15px;
-  width: 100px;
   padding: 4px 8px;
+  flex-grow: 1;
 }
 .emailInput:focus,
 .emailInput:active {
@@ -80,6 +80,7 @@ div:hover.notValid {
   position: relative;
   display: flex;
   align-items: center;
+  flex-grow: 1;
 }
 
 .listContainer {
