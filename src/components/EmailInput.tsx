@@ -54,8 +54,8 @@ const EmailInput: React.FunctionComponent<EmailInputProps> = () => {
 
   const storeEmail = (email: Email) => {
     const oldEmails = [...tagEmails];
-    const isDuplicated = oldEmails.includes(email);
-    if (!isDuplicated && email.text !== '') {
+    const indexDuplicated = oldEmails.findIndex(ele => ele.text === email.text);
+    if (indexDuplicated === -1 && email.text !== '') {
       oldEmails.push(email);
       setTagEmails([...oldEmails]);
     }
@@ -152,7 +152,7 @@ const EmailInput: React.FunctionComponent<EmailInputProps> = () => {
       {isInputRendered && (
         <div className={styles.inputContainer}>
           <input
-            type='text'
+            type='email'
             name='email'
             id='email'
             value={emailInput}
