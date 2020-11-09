@@ -85,14 +85,14 @@ div:hover.notValid {
 
 .listContainer {
   position: absolute;
-  top: 25px;
+  top: 29px;
   background-color: #fdfdfd;
   border-radius: 5px;
-  box-shadow: 0px 0px 16px 11px #e7e7e7;
+  box-shadow: 0px 9px 8px 7px #e7e7e7;
   padding: 10px 0px;
   display: flex;
   flex-direction: column;
-  left: 16px;
+  left: 13px;
   width: 300px;
   max-height: 200px;
   overflow-y: auto;
